@@ -23,27 +23,24 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40">
-      <div className="bg-slate-900 text-white">
+      <div className="bg-[#10B2AE] text-white">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-3 py-3 sm:px-4">
           <NavLink
             to="/"
-            className="flex items-center gap-2 rounded-xl px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/70"
+            className="flex items-center rounded-xl px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/70"
             aria-label="Ir a inicio"
             onClick={() => setOpen(false)}
           >
             <img
-              src={logo}
-              alt="KidsTalent"
-              className="h-8 w-auto"
-            />
-            <div className="hidden leading-tight sm:block">
-              <div className="text-xs text-white/70">{activeLabel}</div>
-            </div>
+  src={logo}
+  alt="KidsTalent"
+  className="h-8 w-auto"
+/>
           </NavLink>
 
           <button
             type="button"
-            className="rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/70 active:bg-white/20"
+            className="rounded-xl bg-white/15 px-3 py-2 text-sm font-semibold transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/70 active:bg-white/20"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Abrir menú"
@@ -75,11 +72,11 @@ export function SiteHeader() {
                   Navegación
                 </div>
                 <button
-                  className="rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 active:bg-slate-300"
-                  onClick={() => setOpen(false)}
-                >
-                  Cerrar
-                </button>
+  className="rounded-xl bg-[#E92634] px-6 py-2.5 text-sm font-bold text-white shadow-lg transition-all duration-200 hover:text-[#c21f2b] hover:bg-[#d9c5c6] hover:shadow-red-200 active:scale-95"
+  onClick={() => setOpen(false)}
+>
+  Cerrar
+</button>
               </div>
 
               <div className="mt-3 grid gap-2">
@@ -94,7 +91,7 @@ export function SiteHeader() {
                         'rounded-2xl px-3 py-3 text-sm font-extrabold transition',
                         isActive
                           ? 'bg-brand text-white'
-                          : 'bg-slate-50 text-slate-900 hover:bg-slate-100 active:bg-slate-200',
+                          : 'bg-slate-50 text-slate-900 hover:bg-[#10B2AE] hover:text-white active:bg-slate-200',
                       ].join(' ')
                     }
                   >

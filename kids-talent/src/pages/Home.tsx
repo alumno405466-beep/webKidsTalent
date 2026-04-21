@@ -12,39 +12,24 @@ export function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.08),rgba(0,0,0,0.62))]" />
           <div className="absolute bottom-4 left-4 right-4">
             <div className="text-3xl font-extrabold leading-tight text-white drop-shadow sm:text-4xl">
-              No es una academia.
-              <br />
-              Es desarrollo personal + creatividad + tecnología.
-            </div>
-            <div className="mt-2 max-w-[52ch] text-sm font-semibold text-white/90">
-              Kids Talent es un ecosistema de aprendizaje creativo donde arte,
-              tecnología e inteligencia emocional se integran para desarrollar el
-              talento de niños y jóvenes.
+              Estimulamos las capacidades naturales de niños y niñas.
             </div>
           </div>
 
-          <div className="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-extrabold text-white shadow-soft">
-            Vídeo real
-          </div>
         </div>
-        <div className="grid gap-2 border-t border-slate-200 bg-white p-4 sm:grid-cols-3">
+        <div className="grid gap-2 border-t border-slate-200 bg-white p-4 sm:grid-cols-2">
           <Link
             to="/programas"
-            className="rounded-full bg-brand px-4 py-3 text-center text-sm font-extrabold text-white shadow-soft transition hover:brightness-95 active:scale-[0.99]"
+            className="rounded-full border-solid border-2 border-brand px-4 py-3 text-center text-sm font-extrabold text-brand shadow-soft transition hover:brightness-95 hover:bg-brand hover:text-white active:scale-[0.99]"
           >
             Descubrir programas <span aria-hidden="true">→</span>
           </Link>
-          <Link
-            to="/contacto"
-            className="rounded-full bg-slate-100 px-4 py-3 text-center text-sm font-extrabold text-slate-900 transition hover:bg-slate-200 active:scale-[0.99]"
-          >
-            Solicitar información <span aria-hidden="true">→</span>
-          </Link>
+          
           <a
             href={whatsappLink('Hola, me gustaría recibir información sobre Kids Talent.')}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-slate-900 px-4 py-3 text-center text-sm font-extrabold text-white transition hover:bg-black active:scale-[0.99]"
+            className="rounded-full bg-[#11AF4B] px-4 py-3 text-center text-sm font-extrabold text-white transition hover:bg-black active:scale-[0.99]"
           >
             WhatsApp <span aria-hidden="true">→</span>
           </a>

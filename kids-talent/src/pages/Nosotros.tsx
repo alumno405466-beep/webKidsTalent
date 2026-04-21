@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { PageTitle } from '../ui/Cards'
 
 const staff = [
-  { name: 'Zara Inni', role: 'Coordinación' },
+  { name: 'Zara Imni', role: 'Coordinación' },
   { name: 'Beatriz Sánchez', role: 'Psicopedagogía' },
   { name: 'Virginia Ramos', role: 'Formación' },
   { name: 'Pablo Carrascoso', role: 'Audiovisual' },
@@ -34,9 +34,7 @@ export function Nosotros() {
                 <div className="text-sm font-extrabold">{p.name}</div>
                 <div className="text-xs text-white/70">{p.role}</div>
               </div>
-              <div className="ml-auto rounded-full bg-brand px-3 py-1 text-xs font-extrabold">
-                Online
-              </div>
+              
             </div>
             <div className="mt-3 text-xs text-white/80">
               Te escribimos con un siguiente paso concreto según objetivos,
