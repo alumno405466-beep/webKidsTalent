@@ -12,6 +12,14 @@ export function PageTitle({ children }: { children: ReactNode }) {
   )
 }
 
+export function SectionTitle({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="text-center text-2xl font-extrabold tracking-tight text-brand">
+      {children}
+    </h2>
+  )
+}
+
 export function Card({
   title,
   subtitle,
@@ -29,6 +37,7 @@ export function Card({
 }) {
   const [open, setOpen] = useState(false)
   const panelId = useId()
+  const headingId = useId()
 
   return (
     <motion.article
@@ -38,11 +47,12 @@ export function Card({
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.995 }}
       className="overflow-hidden rounded-2xl border border-brandD/60 bg-white shadow-soft"
+      aria-labelledby={headingId}
     >
       {image ? (
-        <div className="aspect-[16/9] w-full bg-slate-200">{image}</div>
+        <div className="aspect-[16/9] w-full overflow-hidden bg-slate-200">{image}</div>
       ) : (
-        <div className="aspect-[16/9] w-full bg-slate-200" />
+        <div className="aspect-[16/9] w-full bg-slate-200" aria-hidden="true" />
       )}
 
       <div
@@ -52,6 +62,7 @@ export function Card({
         ].join(' ')}
       >
         <div
+          id={headingId}
           className={[
             'text-lg font-extrabold leading-tight',
             accent === 'teal' ? 'text-white' : 'text-slate-900',
@@ -76,27 +87,27 @@ export function Card({
           <div className="flex items-center justify-between gap-2">
             <Button
               variant="secondary"
-              className="h-9 rounded-full px-3 py-0 text-xs"
+              className="h-9 min-h-0 rounded-full px-3 py-0 text-xs"
             >
               Reservar
             </Button>
+            {/* Botón expandir — Fitts: min 44×44px */}
             <button
               type="button"
-              className="grid h-8 w-8 place-items-center rounded-full bg-brand text-white shadow-soft transition hover:brightness-95 active:scale-[0.98]"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-brand text-white shadow-soft transition hover:brightness-95 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
               aria-expanded={open}
               aria-controls={panelId}
-              aria-label={open ? 'Cerrar detalles' : 'Abrir detalles'}
+              aria-label={open ? `Cerrar detalles de ${title}` : `Ver detalles de ${title}`}
               onClick={() => setOpen((v) => !v)}
             >
-              <span
-                className={[
-                  'text-lg leading-none transition-transform',
-                  open ? 'rotate-45' : '',
-                ].join(' ')}
+              <motion.span
+                className="text-lg font-bold leading-none"
+                animate={{ rotate: open ? 45 : 0 }}
+                transition={{ duration: 0.18 }}
                 aria-hidden="true"
               >
                 +
-              </span>
+              </motion.span>
             </button>
           </div>
         )}
@@ -105,6 +116,8 @@ export function Card({
           {open ? (
             <motion.div
               id={panelId}
+              role="region"
+              aria-label={`Detalles de ${title}`}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -125,7 +138,7 @@ export function Card({
                 <div className="mt-3">
                   <Link
                     to="/contacto"
-                    className="inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-extrabold text-white transition active:scale-[0.99]"
+                    className="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-brand px-4 py-2 text-xs font-extrabold text-white transition hover:brightness-95 active:scale-[0.99]"
                   >
                     Más info <span aria-hidden="true">→</span>
                   </Link>
@@ -139,11 +152,23 @@ export function Card({
   )
 }
 
-export function PlaceholderImage({ label }: { label: string }) {
+export function PlaceholderImage({ label, src }: { label: string; src?: string }) {
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={label}
+        className="h-full w-full object-cover"
+        loading="lazy"
+      />
+    )
+  }
   return (
-    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 to-slate-100 text-xs font-extrabold text-slate-600">
+    <div
+      className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brandL/30 to-brand/20 text-sm font-extrabold text-brand/70"
+      aria-label={label}
+    >
       {label}
     </div>
   )
 }
-

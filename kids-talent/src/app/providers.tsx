@@ -3,6 +3,8 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { Toaster } from 'sonner'
 
+import { HelmetProvider } from 'react-helmet-async'
+
 export function AppProviders({ children }: { children: ReactNode }) {
   const [client] = useState(
     () =>
@@ -17,10 +19,12 @@ export function AppProviders({ children }: { children: ReactNode }) {
   )
 
   return (
-    <QueryClientProvider client={client}>
-      {children}
-      <Toaster richColors position="top-center" />
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={client}>
+        {children}
+        <Toaster richColors position="top-center" />
+      </QueryClientProvider>
+    </HelmetProvider>
   )
 }
 

@@ -5,6 +5,7 @@
 @layer base {
   :root {
     color-scheme: light;
+    scroll-behavior: smooth;
   }
 
   html,
@@ -16,12 +17,14 @@
     @apply bg-white text-slate-900 antialiased;
     font-family: Roboto, system-ui, -apple-system, Segoe UI, Ubuntu, Cantarell,
       Noto Sans, sans-serif;
+    line-height: 1.6;
   }
 
   h1,
   h2,
   h3 {
     @apply font-display;
+    line-height: 1.25;
   }
 
   a {
@@ -31,11 +34,31 @@
   ::selection {
     @apply bg-brandL text-slate-900;
   }
+
+  /* Focus visible global — accesibilidad teclado */
+  :focus-visible {
+    outline: 3px solid #10B2AE;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Quitar outline por defecto solo cuando NO es teclado */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 @layer components {
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Skip-to-content accesible */
+  .skip-link {
+    @apply fixed left-2 top-2 z-[9999] -translate-y-20 rounded-xl bg-brand px-4 py-3 text-sm font-extrabold text-white shadow-lg transition-transform;
+  }
+  .skip-link:focus {
+    @apply translate-y-0;
   }
 }
 
@@ -48,6 +71,18 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Desactivar todas las animaciones si el usuario lo prefiere */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 }
